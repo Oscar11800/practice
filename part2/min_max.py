@@ -2,14 +2,16 @@ from typing import List
 
 # takes an integer and returns the integer if it is greater than or equal to 0. Otherwise, it should return 0.
 def disallow_negatives(num: int) -> int:
-    pass
+    return max(0, num)
 
 # takes a list of integers and returns the maximum difference 
 # between any two adjacent elements in the list, by subtracting the element on the right from the element on the left.
 # In other words, it should return the maximum value of nums[i] - nums[i - 1] for all valid indices i.
 def max_difference(nums: List[int]) -> int:
-    pass 
-
+    max_diff = 0
+    for i in range(len(nums) - 1):
+        max_diff = max(max_diff, abs(nums[i+1]) - abs(nums[i]))
+    return max_diff
 
 
 # do not modify below this line
