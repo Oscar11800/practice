@@ -3,7 +3,7 @@ from typing import List
 # takes two lists of integers and returns a new list that contains all the elements of the first list followed by all the elements of the second list.
 # Do not modify the original lists.
 def combine_elements(arr1: List[int], arr2: List[int]) -> List[int]:
-    pass
+    return arr1 + arr2
 
 
 

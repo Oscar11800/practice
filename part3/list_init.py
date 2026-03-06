@@ -2,7 +2,9 @@ from typing import List
 
 # create and return a list of length size. All values in the list should be 0, except for the value at index index, which should be the parameter value.
 def create_list_with_value(size: int, index: int, value: int) -> List[int]:
-    pass
+    l = [0]*size
+    l[index] = value
+    return l
 
 
 

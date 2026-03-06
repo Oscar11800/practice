@@ -2,12 +2,16 @@ from typing import List
 
 # append the elements of arr2 to the end of arr1 and return the resulting list. Yes, this is the same function from the previous lesson.
 def append_elements(arr1: List[int], arr2: List[int]) -> List[int]:
-    pass
+    arr1.extend(arr2)
+    return arr1
   
 # remove all elements of arr2 from arr1 and return the resulting list.
 # If any of the elements in arr2 are not in arr1, then skip them.
 def remove_elements(arr1: List[int], arr2: List[int]) -> List[int]:
-    pass
+    for num in arr2:
+        while num in arr1:
+            arr1.remove(num)
+    return arr1
 
 
 # do not modify below this line
