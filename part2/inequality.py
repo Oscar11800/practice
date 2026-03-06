@@ -2,8 +2,7 @@ from typing import List
 
 # return True if the length of the names list is greater than 0 and less than or equal to the parameter max_length. Otherwise it should return False.
 def is_arr_valid(names: List[str], max_length: int) -> bool:
-    pass
-
+    return 0 < len(names) <= max_length
 
 
 # do not modify below this line
