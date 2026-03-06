@@ -8,10 +8,7 @@ def disallow_negatives(num: int) -> int:
 # between any two adjacent elements in the list, by subtracting the element on the right from the element on the left.
 # In other words, it should return the maximum value of nums[i] - nums[i - 1] for all valid indices i.
 def max_difference(nums: List[int]) -> int:
-    max_diff = 0
-    for i in range(len(nums) - 1):
-        max_diff = max(max_diff, abs(nums[i+1]) - abs(nums[i]))
-    return max_diff
+    return max(b - a for a, b in zip(nums, nums[1:]))
 
 
 # do not modify below this line
