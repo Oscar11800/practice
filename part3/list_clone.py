@@ -3,7 +3,9 @@ from typing import List
 # takes a list of integers and returns a new list with the specified element removed. You should not modify the original list.
 # assume element always in list
 def remove_element(arr: List[int], element: int) -> List[int]:
-    pass
+    new_arr = arr.copy()
+    new_arr.remove(element)
+    return new_arr
 
 
 
