@@ -4,7 +4,11 @@ from typing import List
 # takes a list of integers and returns the integers in reverse sorted order. 
 # You should use the tuple technique described above to achieve this.
 def get_reverse_sorted(nums: List[int]) -> List[int]:
-    pass
+    heap = []
+    for num in nums:
+        pair = (-num, num)
+        heapq.heappush(heap, pair)
+    return [heapq.heappop(heap)[1] for _ in range(len(nums))]
 
 
 
