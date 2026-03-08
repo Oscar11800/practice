@@ -2,7 +2,7 @@ from typing import List, Set
 
 # takes a list of integers and returns a set with the double of each number in the list.
 def double_nums(nums: List[int]) -> Set[int]:
-    pass
+    return {2*num for num in nums}
 
 
 # do not modify below this line
