@@ -9,7 +9,10 @@ self.name: assigned the value of the name parameter
 self.species: assigned the value of the species parameter
 '''
 
-
+class Pet:
+    def __init__(self, name: str, species: str):
+        self.name = name
+        self.species = species
 
 
 # Do not modify below this line
