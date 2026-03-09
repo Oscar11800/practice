@@ -12,23 +12,32 @@ Each function should run in
 O(1) time.
 '''
 class MinStack:
-
     def __init__(self):
-        pass
+        self.stack = []
+        self.mins = []
 
     def push(self, val: int) -> None:
-        pass
+        self.stack.append(val)
+        if not self.mins:
+            self.mins.append(val)
+        else:
+            current_min = self.getMin()
+            if val < current_min: 
+                self.mins.append(val)
+            else:
+                self.mins.append(current_min)
 
     def pop(self) -> None:
-        pass
+        self.stack.pop()
+        self.mins.pop()
 
     def top(self) -> int:
-        pass
+        return self.stack[-1]
 
     def getMin(self) -> int:
-        pass
+        return self.mins[-1]
 
-    
+
 # ============== Tests ===============
 def test1():
     """
@@ -110,3 +119,6 @@ def test5():
     minStack.pop()  # Remove 3
     assert_equal(minStack.getMin(), 5)
     assert_equal(minStack.top(), 5)
+
+if __name__ == "__main__":
+    run_tests()
