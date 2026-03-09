@@ -11,7 +11,7 @@ class Pet:
 # Don't modify the above code
 
 # TODO: Create a pet named "Whiskers" that is a species of 'cat' with hunger level 6 and energy level 8
-
+whiskers = Pet("Whiskers", "cat", 6, 8)
 
 # Don't modify the following code
 print(f"{whiskers.name} ({whiskers.species}) - Hunger: {whiskers.hunger}, Energy: {whiskers.energy}") 
