@@ -8,9 +8,13 @@ species, and age attributes when a new pet is created.
 
 
 '''
+
 class Pet:
     # TODO: Implement the __init__ method here
-
+    def __init__(self, name: str, species: str, age: int) -> None:
+        self.name = name
+        self.species = species
+        self.age = age
 
 
 # Don't modify the code below this line

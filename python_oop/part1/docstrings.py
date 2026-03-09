@@ -8,11 +8,22 @@ Add a docstring to the make_sound method explaining what it does.
 
 '''
 class Pet:
+    """A class to represent a pet.
+
+    Attributes:
+        name (str): The pet's name
+        animal_type (str): The pet's type
+    """
+
+    
     def __init__(self, name: str, animal_type: str):
+        """Initialize a new Pet instance."""
         self.name = name
         self.animal_type = animal_type
 
+    
     def make_sound(self) -> str:
+        """Return the sound the pet makes based on its type."""
         if self.animal_type == "dog":
             return "Woof!"
         elif self.animal_type == "cat":

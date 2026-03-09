@@ -26,10 +26,23 @@ class SuperHero:
 
     def __init__(self, name: str, power: str, health: int):
         # TODO: Initialize the superhero's attributes here
-        pass
+        self.name = name
+        self.power = power
+        self.health = health
+    
+    def print_superhero(self):
+        print(self.name)
+        print(self.power)
+        print(self.health)
 
 
 # TODO: Create Superhero instances
+batman = SuperHero("Batman", "Intelligence", 100)
+superman = SuperHero("Superman", "Strength", 150)
+
+
 
 
 # TODO: Print out the attributes of each superhero
+batman.print_superhero()
+superman.print_superhero()

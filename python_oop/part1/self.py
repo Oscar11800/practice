@@ -13,7 +13,7 @@ class SuperHero:
         self.power = power
         self.strength = strength
     
-    def power_boost(self) -> None:
+    def power_boost(self, strength_increase) -> None:
         self.strength += strength_increase
         print(f"{self.name}'s strength increased to {self.strength}!")
 
