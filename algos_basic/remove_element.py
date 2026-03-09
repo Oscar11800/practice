@@ -16,9 +16,16 @@ Return k as the final result.
 '''
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        while(val in nums):
-            nums.remove(val)
-        return len(nums)
+        lag = 0
+        lead = 0
+        length = len(nums)
+        while lead < length:
+            if nums[lead] != val:
+                nums[lag] = nums[lead]
+                lag += 1
+            lead += 1
+        return lag
+
         
 
 # ========== TESTS ==========
