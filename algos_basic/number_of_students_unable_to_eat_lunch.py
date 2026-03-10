@@ -1,5 +1,5 @@
 from test_runner import assert_equal, run_tests
-
+from collections import deque
 '''
 1700. Number of Students Unable to Eat Lunch
 
@@ -43,7 +43,19 @@ class Solution:
         :param sandwiches: Type of each sandwich in stack. Index 0 is top.
         :return: Number of students who cannot get a sandwich.
         """
-        pass
+        queue = deque(students)
+        stack = sandwiches[::-1]
+        counter = 0
+
+        while queue and counter < len(queue):
+            if queue[0] == stack[-1]:
+                queue.popleft()
+                stack.pop()
+                counter = 0
+            else:
+                queue.append(queue.popleft())
+                counter += 1
+        return len(queue)
 
 
 # ========== TESTS ==========
