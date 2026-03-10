@@ -1,5 +1,5 @@
 from test_runner import assert_equal, run_tests
-
+# NOTE: This is only partially successful. Needs major revisions
 '''
 Design your implementation of the linked list. You can choose to use a singly or doubly linked list.
 A node in a singly linked list should have two attributes: val and next.
@@ -16,20 +16,30 @@ void addAtHead(int val) Add a node of value val before the first element of the 
     After the insertion, the new node will be the first node of the linked list.
 void addAtTail(int val) Append a node of value val as the last element of the linked list.
 void addAtIndex(int index, int val) Add a node of value val before the indexth node in the linked list. 
-    If index equals the length of the linked list, the node will be appended to the end of the linked list. If index is greater than the length, the node will not be inserted.
+    If index equals the length of the linked list, the node will be appended to the end of the linked list. 
+    If index is greater than the length, the node will not be inserted.
 void deleteAtIndex(int index) Delete the indexth node in the linked list, if the index is valid.
 '''
 class MyLinkedList(object):
-
-    def __init__(self):
-        pass
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
     def get(self, index):
         """
         :type index: int
         :rtype: int
         """
-        pass
+        if index < 0:
+            return -1
+        if not self.next and self.val == 0:  # Empty list
+            return -1
+        curr = self
+        for _ in range(index):
+            if not curr or not curr.next:
+                return -1
+            curr = curr.next
+        return curr.val if curr else -1
         
 
     def addAtHead(self, val):
@@ -37,7 +47,13 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        pass
+        if not self.next and self.val == 0:  # Empty list
+            self.val = val
+            self.next = None
+        else:
+            copy = MyLinkedList(self.val, self.next)
+            self.val = val
+            self.next = copy
         
 
     def addAtTail(self, val):
@@ -45,16 +61,50 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-        pass
+        if not self.next and self.val == 0:  # Empty list
+            self.val = val
+            self.next = None
+            return
+        curr = self
+        while curr.next:
+            curr = curr.next
+        curr.next = MyLinkedList(val, None)
         
 
     def addAtIndex(self, index, val):
-        """
-        :type index: int
-        :type val: int
-        :rtype: None
-        """
-        pass
+        if index < 0:
+            return
+        if index == 0:
+            if not self.next and self.val == 0:  # Empty list
+                self.val = val
+                self.next = None
+                return
+            copy = MyLinkedList(self.val, self.next)
+            self.val = val
+            self.next = copy
+            return
+        # index > 0: invalid if list is empty
+        if not self.next and self.val == 0:
+            return
+        curr = self
+        # index > 0: don't use empty check - [0] is a valid 1-element list
+        curr = self
+        for _ in range(index):
+            if not curr:
+                return
+            curr = curr.next
+        if curr is None:
+            # Index equals length - append at tail
+            prev = self
+            while prev.next:
+                prev = prev.next
+            prev.next = MyLinkedList(val, None)
+        else:
+            # Insert before curr
+            prev = self
+            while prev.next != curr:
+                prev = prev.next
+            prev.next = MyLinkedList(val, curr)
         
 
     def deleteAtIndex(self, index):
@@ -62,7 +112,29 @@ class MyLinkedList(object):
         :type index: int
         :rtype: None
         """
-        pass
+        if index < 0:
+            return
+        if not self.next and self.val == 0:  # Empty list
+            return
+        if index == 0:
+            if self.next:
+                self.val = self.next.val  # Get val FIRST
+                self.next = self.next.next  # Then update next
+            else:
+                self.val = 0
+                self.next = None
+            return
+        curr = self
+        for _ in range(index):
+            if not curr or not curr.next:
+                return  # Invalid index
+            curr = curr.next
+        if not curr:
+            return
+        prev = self
+        while prev.next != curr:
+            prev = prev.next
+        prev.next = curr.next
 
 
 # Your MyLinkedList object will be instantiated and called as such:
