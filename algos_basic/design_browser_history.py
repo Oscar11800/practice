@@ -14,12 +14,21 @@ string forward(int steps) Move steps forward in history.
 If you can only forward x steps in the history and steps > x, you will forward only x steps. 
 Return the current url after forwarding in history at most steps.
 '''
-class BrowserHistory(object):
+
+class BrowserNode():
+
+    def __init__(self, url=None, next=None, prev=None):
+        self.url = url
+        self.next = next
+        self.prev = prev
+        
+class BrowserHistory():
 
     def __init__(self, homepage):
         """
         :type homepage: str
         """
+        self.homepage = BrowserNode(homepage, None, None)
         
 
     def visit(self, url):
@@ -27,6 +36,9 @@ class BrowserHistory(object):
         :type url: str
         :rtype: None
         """
+        new_page = BrowserNode(url, None, self.homepage)
+        self.homepage.next = new_page
+        self.homepage = new_page
         
 
     def back(self, steps):
@@ -34,6 +46,11 @@ class BrowserHistory(object):
         :type steps: int
         :rtype: str
         """
+        count = 0
+        while self.homepage.prev and count < steps:
+            self.homepage = self.homepage.prev
+            count += 1
+        return self.homepage.url
         
 
     def forward(self, steps):
@@ -41,7 +58,12 @@ class BrowserHistory(object):
         :type steps: int
         :rtype: str
         """
-        
+        count = 0
+        while self.homepage.next and count < steps:
+            self.homepage = self.homepage.next
+            count += 1
+        return self.homepage.url
+
 
 
 # Your BrowserHistory object will be instantiated and called as such:
