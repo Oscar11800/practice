@@ -33,7 +33,7 @@ class Solution:
         """
         n = len(matrix)
         m = len(matrix[0])
-        l, r = 0, n*m-1
+        l, r = 0, n*m-1  # noqa: E741
         mid = (l + r)//2
 
         row = mid // m
@@ -48,7 +48,7 @@ class Solution:
                 row = mid // m
                 col = mid % m
             else:
-                l = mid + 1
+                l = mid + 1  # noqa: E741
                 mid = (l + r)//2
                 row = mid // m
                 col = mid % m

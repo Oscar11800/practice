@@ -41,7 +41,7 @@ class Solution:
         heap = []
         id = 0
         # initialize the heap
-        for l in lists:
+        for l in lists:  # noqa: E741
             if l:
                 heapq.heappush(heap, (l.val, id, l))
                 id += 1

@@ -30,7 +30,7 @@ class Solution:
         :param target: Value to search for.
         :return: Index of target, or -1 if not found.
         """
-        l, r = 0, len(nums)-1
+        l, r = 0, len(nums)-1  # noqa: E741
         m = math.ceil((l+r)/2)
 
         while l <= r:
@@ -40,7 +40,7 @@ class Solution:
                 r = m - 1
                 m = math.ceil((l+r)/2)
             else:
-                l = m + 1
+                l = m + 1  # noqa: E741
                 m = math.ceil((l+r)/2)
         return -1
 
