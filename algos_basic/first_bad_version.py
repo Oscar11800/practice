@@ -45,7 +45,20 @@ class Solution:
         :param n: Total number of versions.
         :return: The first bad version number.
         """
-        pass
+        left, right = 1, n
+        while left <= right:
+            mid = (left + right) // 2
+            is_bad = isBadVersion(mid)
+            if is_bad and mid == 1:
+                return 1
+            elif is_bad and not isBadVersion(mid-1):
+                return mid
+            elif is_bad:
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return 1
 
 
 # ========== TESTS ==========
