@@ -1,5 +1,5 @@
 from test_runner import assert_equal, run_tests
-
+import math
 '''
 875. Koko Eating Bananas
 
@@ -38,7 +38,16 @@ class Solution:
         :param h: Hours available.
         :return: Minimum k (bananas per hour).
         """
-        pass
+        left, right = 1, max(piles)
+        while left < right:
+          mid = (left + right)//2
+          totalh = sum(map(lambda x: math.ceil(x/mid), piles))
+          if totalh > h:
+            left = mid + 1
+          else:
+            right = mid
+
+        return left
 
 
 # ========== TESTS ==========
