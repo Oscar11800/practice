@@ -54,16 +54,18 @@ class Solution:
             return None
         if key < root.val:
             root.left = self.deleteNode(root.left, key)
-        elif key > root.val:
+            return root
+        if key > root.val:
             root.right = self.deleteNode(root.right, key)
-        else:
-            if root.right:
-                root.val = self.findMin(root.right).val
-                root.right = self.deleteNode(root.right, root.val)
-            elif root.left:
-                return root.left
-            else:
-                root = None
+            return root
+        # Found: root.val == key
+        if not root.left:
+            return root.right  # handles right-only and leaf
+        if not root.right:
+            return root.left
+        # Two children: replace with inorder successor
+        root.val = self.findMin(root.right).val
+        root.right = self.deleteNode(root.right, root.val)
         return root
 
 
