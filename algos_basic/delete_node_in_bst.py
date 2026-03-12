@@ -37,6 +37,11 @@ class TreeNode:
 
 
 class Solution:
+    def findMin(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        while root.left:
+            root = root.left
+        return root
+
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         """
         Delete the node with value key from the BST and return the root.
@@ -45,7 +50,21 @@ class Solution:
         :param key: Value of the node to delete.
         :return: Root of the BST after deletion (possibly updated).
         """
-        pass
+        if not root:
+            return None
+        if key < root.val:
+            root.left = self.deleteNode(root.left, key)
+        elif key > root.val:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if root.right:
+                root.val = self.findMin(root.right).val
+                root.right = self.deleteNode(root.right, root.val)
+            elif root.left:
+                return root.left
+            else:
+                root = None
+        return root
 
 
 # ========== HELPERS ==========
