@@ -1,5 +1,6 @@
 from typing import Optional
 from test_runner import assert_equal, run_tests
+from collections import deque
 
 '''
 199. Binary Tree Right Side View
@@ -40,7 +41,23 @@ class Solution:
         :param root: Root of the binary tree.
         :return: List of right-side view values.
         """
-        pass
+        if not root: 
+            return []
+
+        rtn = []
+        queue = deque()
+        queue.append(root)
+        while(queue):
+            level_len = len(queue)
+            for i in range(level_len):
+                root = queue.popleft()
+                if i == level_len-1:
+                    rtn.append(root.val)
+                if root.left:
+                    queue.append(root.left)
+                if root.right:
+                    queue.append(root.right)
+        return rtn
 
 
 # ========== HELPERS ==========
