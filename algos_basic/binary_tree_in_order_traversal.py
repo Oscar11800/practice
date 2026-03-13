@@ -40,13 +40,29 @@ class Solution:
         """
         Inorder traversal using recursion.
         """
-        pass
+        if root:
+            left = self.inorderTraversalRecursive(root.left)
+            right = self.inorderTraversalRecursive(root.right)
+            return left + [root.val] + right
+        return []
 
     def inorderTraversalIterative(self, root: Optional[TreeNode]) -> list[int]:
         """
         Inorder traversal using iteration (stack, no recursion).
         """
-        pass
+        curr = root
+        stack = []
+        res = []
+
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            res.append(curr.val)
+            curr = curr.right
+
+        return res
 
 
 # ========== HELPERS ==========
