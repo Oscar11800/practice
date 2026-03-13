@@ -46,7 +46,14 @@ class Solution:
         :param inorder: Inorder traversal (left, root, right).
         :return: Root of the constructed tree.
         """
-        pass
+        if not preorder or not inorder:
+            return None
+        root = TreeNode(preorder[0])
+        cutoff = inorder.index(root.val)
+
+        root.left = self.buildTree(preorder[1:1+cutoff:], inorder[0:cutoff])
+        root.right = self.buildTree(preorder[1+cutoff:], inorder[cutoff+1:])
+        return root
 
 
 # ========== HELPERS ==========
