@@ -42,7 +42,23 @@ class Solution:
         :param k: 1-indexed position (1 = smallest).
         :return: The kth smallest value.
         """
-        pass
+        counter = 1
+        curr = root
+        stack = []
+        ret = 0
+
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            ret = curr.val
+            if counter == k:
+                return ret
+            counter += 1
+            curr = curr.right
+        return ret
+            
 
 
 # ========== HELPERS ==========
