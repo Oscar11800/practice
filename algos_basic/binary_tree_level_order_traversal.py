@@ -1,6 +1,6 @@
 from typing import Optional, List
 from test_runner import assert_equal, run_tests
-
+from collections import deque
 '''
 102. Binary Tree Level Order Traversal
 
@@ -37,7 +37,24 @@ class Solution:
         :param root: Root of the binary tree.
         :return: List of lists, each sublist contains node values at that level.
         """
-        pass
+        
+        if not root:
+            return []
+        queue = deque()
+        rtn = []
+        queue.append(root)
+        while queue:
+            sublist = []
+            curr_len = len(queue)
+            for i in range(curr_len):
+                curr_node = queue.popleft()
+                sublist.append(curr_node.val)
+                if curr_node.left:
+                    queue.append(curr_node.left)
+                if curr_node.right:
+                    queue.append(curr_node.right)
+            rtn.append(sublist)
+        return rtn
 
 
 # ========== HELPERS ==========
