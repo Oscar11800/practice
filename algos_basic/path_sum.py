@@ -38,6 +38,27 @@ class TreeNode:
 
 
 class Solution:
+    # def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    #     """
+    #     Return true if any root-to-leaf path sums to targetSum.
+
+    #     :param root: Root of the binary tree.
+    #     :param targetSum: Target sum for a root-to-leaf path.
+    #     :return: True if such a path exists, False otherwise.
+    #     """
+    #     if not root:
+    #         return False
+    #     stack = [(root, root.val)]
+    #     while stack:
+    #         node, running_sum = stack.pop()
+    #         if running_sum == targetSum and not node.left and not node.right:
+    #             return True
+    #         if node.right:
+    #             stack.append((node.right, running_sum + node.right.val))
+    #         if node.left:
+    #             stack.append((node.left, running_sum + node.left.val))
+    #     return False
+
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         """
         Return true if any root-to-leaf path sums to targetSum.
@@ -46,9 +67,12 @@ class Solution:
         :param targetSum: Target sum for a root-to-leaf path.
         :return: True if such a path exists, False otherwise.
         """
-        pass
-
-
+        if not root:
+            return False
+        if not root.left and not root.right:
+            return root.val == targetSum
+        remaining = targetSum - root.val
+        return self.hasPathSum(root.left, remaining) or self.hasPathSum(root.right, remaining)
 # ========== HELPERS ==========
 
 def build_tree(arr: list) -> Optional[TreeNode]:
