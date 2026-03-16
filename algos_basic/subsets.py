@@ -30,7 +30,16 @@ class Solution:
         :param nums: List of unique integers.
         :return: List of all subsets (order does not matter).
         """
-        pass
+        rtn = []
+        def dfs(nums: List[int], path: List[int], index: int) -> List[List[int]]:
+            if index == len(nums):
+                rtn.append(path)
+                return
+            dfs(nums, path, index + 1)
+            dfs(nums, path + [nums[index]], index + 1)
+            
+        dfs(nums, [], 0)
+        return rtn
 
 
 # ========== HELPERS ==========
