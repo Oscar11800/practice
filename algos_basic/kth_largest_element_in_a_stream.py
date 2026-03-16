@@ -1,6 +1,6 @@
 from typing import List
 from test_runner import assert_equal, run_tests
-
+import heapq
 '''
 703. Kth Largest Element in a Stream
 
@@ -32,13 +32,27 @@ class KthLargest:
         """
         Initialize with k and initial stream nums.
         """
-        pass
+        self.k = k
+        self.nums = []
+        for num in nums:
+            if len(self.nums) == k:
+                if num > self.nums[0]:
+                    heapq.heappop(self.nums)
+                    heapq.heappush(self.nums, num)
+            else:
+                heapq.heappush(self.nums, num)
 
     def add(self, val: int) -> int:
         """
         Add val to the stream and return the kth largest integer.
         """
-        pass
+        if len(self.nums) == self.k:
+            if val >= self.nums[0]:
+                heapq.heappop(self.nums)
+                heapq.heappush(self.nums, val)
+        else:
+            heapq.heappush(self.nums, val)
+        return self.nums[0]
 
 
 # ========== TESTS ==========
