@@ -31,7 +31,13 @@ class Solution:
         :param t: Second string.
         :return: True if same characters (any order), False otherwise.
         """
-        pass
+        if len(s) != len(t):
+          return False
+        
+        ascii_s = sum(ord(c) for c in s)
+        ascii_t = sum(ord(c) for c in t)
+
+        return ascii_s == ascii_t
 
 
 # ========== TESTS ==========
