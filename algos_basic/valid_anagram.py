@@ -1,6 +1,5 @@
-from email.policy import default
 from test_runner import assert_equal, run_tests
-from collections import Counter, defaultdict
+from collections import defaultdict
 '''
 242. Valid Anagram
 
