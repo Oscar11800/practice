@@ -1,5 +1,6 @@
+from email.policy import default
 from test_runner import assert_equal, run_tests
-
+from collections import Counter, defaultdict
 '''
 242. Valid Anagram
 
@@ -34,11 +35,18 @@ class Solution:
         if len(s) != len(t):
           return False
         
-        ascii_s = sum(ord(c) for c in s)
-        ascii_t = sum(ord(c) for c in t)
+        freq = defaultdict(int)
 
-        return ascii_s == ascii_t
+        for c in s:
+          freq[c] += 1
+        
+        for c in t:
+          freq[c] -= 1
 
+        for c in freq:
+          if freq[c]:
+            return False
+        return True
 
 # ========== TESTS ==========
 
