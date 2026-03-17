@@ -1,6 +1,6 @@
 from typing import List
 from test_runner import assert_equal, run_tests
-
+import heapq
 '''
 1046. Last Stone Weight
 
@@ -37,7 +37,18 @@ class Solution:
         :param stones: Array of stone weights.
         :return: Last stone weight, or 0 if none remain.
         """
-        pass
+        stones = list(map(lambda s: -s, stones))
+        heapq.heapify(stones)
+        while len(stones) >= 2:
+            s1 = heapq.heappop(stones)
+            s2 = heapq.heappop(stones)
+            diff = s2 - s1
+            if diff != 0:
+                heapq.heappush(stones, -diff)
+        if len(stones):
+            return -stones[0]
+        else:
+            return 0
 
 
 # ========== TESTS ==========
