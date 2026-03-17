@@ -24,30 +24,30 @@ Example:
 
 Constraints: 1 <= capacity <= 100, 0 <= key, value <= 1000
 
-<details>
-<summary>Hint 1</summary>
-Can you think of a data structure for storing key-value pairs? Maybe a hash-based structure with unique keys.
-</details>
+# region Hint 1
+# Can you think of a data structure for storing key-value pairs?
+# Maybe a hash-based structure with unique keys.
+# endregion
 
-<details>
-<summary>Hint 2</summary>
-A hash map gives O(1) get/put. How do you track "least recently used" for eviction? What structure stores order?
-</details>
+# region Hint 2
+# A hash map gives O(1) get/put. How do you track "least recently used"?
+# What structure stores order?
+# endregion
 
-<details>
-<summary>Hint 3</summary>
-Brute force: array list, iterate to erase/insert → O(n). What structure allows O(1) remove and reinsert?
-</details>
+# region Hint 3
+# Brute force: array list, iterate to erase/insert → O(n).
+# What structure allows O(1) remove and reinsert?
+# endregion
 
-<details>
-<summary>Hint 4</summary>
-A doubly-linked list lets you remove a node in O(1) given its address. How do you store those addresses for each key?
-</details>
+# region Hint 4
+# A doubly-linked list lets you remove a node in O(1) given its address.
+# How do you store those addresses for each key?
+# endregion
 
-<details>
-<summary>Hint 5</summary>
-Doubly linked list: LRU at head, MRU at tail. On get/put, move node to tail. When full, evict from head. Use a hash map from key → node for O(1) lookup.
-</details>
+# region Hint 5
+# Doubly linked list: LRU at head, MRU at tail. On get/put, move node to tail.
+# When full, evict from head. Use a hash map from key → node for O(1) lookup.
+# endregion
 '''
 
 

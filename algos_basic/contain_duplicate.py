@@ -25,7 +25,13 @@ class Solution:
         :param nums: Array of integers.
         :return: True if duplicates exist, False otherwise.
         """
-        pass
+        hashset = set()
+        for num in nums:
+            if num in hashset:
+                return True
+            hashset.add(num)
+        return False
+
 
 
 # ========== TESTS ==========
