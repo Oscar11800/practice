@@ -1,6 +1,6 @@
 from typing import List
 from test_runner import assert_equal, run_tests
-
+import heapq
 '''
 215. Kth Largest Element in an Array
 
@@ -35,7 +35,11 @@ class Solution:
         :param k: 1-indexed position (1 = largest).
         :return: The kth largest value.
         """
-        pass
+        nums = [-num for num in nums]
+        heapq.heapify(nums)
+        for _ in range(k-1):
+            heapq.heappop(nums)
+        return -heapq.heappop(nums)
 
 
 # ========== TESTS ==========
