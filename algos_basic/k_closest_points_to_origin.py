@@ -1,5 +1,6 @@
 from typing import List
 from test_runner import assert_equal, run_tests
+import heapq
 
 '''
 973. K Closest Points to Origin
@@ -35,7 +36,12 @@ class Solution:
         :param k: Number of closest points to return.
         :return: k closest points (any order).
         """
-        pass
+        rtn = []
+        min_heap = list(map(lambda point: (point[0] ** 2 + point[1] ** 2, point), points))
+        heapq.heapify(min_heap)
+        for _ in range(k):
+            rtn.append(heapq.heappop(min_heap)[1])
+        return rtn
 
 
 # ========== HELPERS ==========
