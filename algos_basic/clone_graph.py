@@ -1,6 +1,6 @@
 from typing import Optional, List
 from test_runner import assert_equal, run_tests
-
+from collections import deque
 '''
 133. Clone Graph
 
@@ -45,7 +45,26 @@ class Solution:
         :param node: Start node of connected graph (or None).
         :return: Deep-cloned start node.
         """
-        pass
+        if node is None:
+            return None
+        queue = deque()
+        queue.append(node)
+        hashmap = {}
+        hashmap[node] = Node(node.val)
+
+        while queue:
+            og_node = queue.popleft()
+            for neighbor in og_node.neighbors:
+                
+                if neighbor not in hashmap:
+                    queue.append(neighbor)
+                    cloned_neighbor = Node(neighbor.val)
+                    hashmap[neighbor] = cloned_neighbor
+                else:
+                    cloned_neighbor = hashmap[neighbor]
+                hashmap[og_node].neighbors.append(cloned_neighbor)
+
+        return hashmap[node]
 
 
 # ========== HELPERS ==========
