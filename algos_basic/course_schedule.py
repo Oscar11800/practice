@@ -1,5 +1,5 @@
-from collections import defaultdict, deque
-from typing import DefaultDict, List
+from collections import deque
+from typing import List
 from test_runner import assert_equal, run_tests
 
 '''
