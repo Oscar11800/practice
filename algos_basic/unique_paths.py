@@ -1,11 +1,12 @@
-from test_runner import assert_equal, run_tests
 
+from test_runner import assert_equal, run_tests
+# TODO: complete this
 '''
 62. Unique Paths
 
 There is an m x n grid. You can only move:
 - right
-- down
+- downm
 
 Return the number of unique paths from top-left (0,0) to bottom-right (m-1,n-1).
 
@@ -33,8 +34,30 @@ class Solution:
         :param n: Number of columns.
         :return: Count of unique paths.
         """
-        pass
-
+        memo = {}
+        def dfs(row, col):
+            if row >= m or col >= n or row < 0 or col < 0:
+                return 0
+            if (row, col) in memo:
+                return memo[(row, col)]
+            if row == 0 and col == 0:
+                memo[(row, col)] = 1
+                return
+            
+            if memo[row-1, col] != -1:
+                down = memo[(row-1, col)]
+            else:
+                dfs(row-1, col)
+                down = memo[(row-1, col)]
+            if memo[row, col-1] != -1:
+                left = memo[(row, col-1)]
+            else:
+                dfs(row, col -1)
+                left = memo[(row, col-1)]
+            
+            memo[(row, col)] = left + down
+        dfs(m-1, n-1)
+        return memo[(m-1,n-1)]
 
 # ========== TESTS ==========
 
