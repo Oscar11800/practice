@@ -35,7 +35,13 @@ class Solution:
         :param strs: List of strings.
         :return: Encoded string.
         """
-        pass
+        encoded = ""
+        if len(strs) == 0:
+            return encoded
+        for s in strs:
+            s_str = "[" + str(len(s)) + "]" + s
+            encoded += s_str
+        return encoded
 
     def decode(self, s: str) -> List[str]:
         """
@@ -44,7 +50,17 @@ class Solution:
         :param s: Encoded string.
         :return: Original list of strings.
         """
-        pass
+        rtn = []
+        i = 1
+        while i < len(s):
+            s_len = int(s[i])
+            i+= 2
+            new_s = ""
+            for i in range(i, i + s_len):
+                new_s += s[i]
+            rtn.append(new_s)
+            i+= 2
+        return rtn
 
 
 # ========== TESTS ==========
