@@ -1,3 +1,5 @@
+from collections import defaultdict
+import heapq
 from typing import List
 from test_runner import assert_equal, run_tests
 
@@ -33,7 +35,18 @@ class Solution:
         :param k: Number of top frequent elements to return.
         :return: List of k most frequent elements (any order).
         """
-        pass
+        occurences = defaultdict(int)
+        # count occurences
+        for num in nums:
+            occurences[num] += 1
+        heap = [(-val, key) for key, val in occurences.items()]
+        heapq.heapify(heap)
+        rtn = []
+
+        for _ in range(k):
+            rtn.append(heapq.heappop(heap)[1])
+        return rtn
+
 
 
 # ========== HELPERS ==========
