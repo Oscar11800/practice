@@ -5,7 +5,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Linked List Cycle Detection
-Easy
 
 Given the beginning of a linked list head, return true if there is a cycle in
 the linked list. Otherwise, return false.
@@ -42,8 +41,14 @@ class ListNode:
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        raise NotImplementedError
-
+        visited = set()
+        curr = head
+        while curr is not None:
+            if curr in visited:
+                return True
+            visited.add(curr)
+            curr = curr.next
+        return False
 
 def build_linked_list_with_cycle(values: list[int], index: int) -> Optional[ListNode]:
     if not values:
