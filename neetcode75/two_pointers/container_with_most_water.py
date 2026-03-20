@@ -30,17 +30,17 @@ Constraints:
 class Solution:
     def maxArea(self, heights: List[int]) -> int:
         max_area = 0
-        l, r = 0, len(heights)-1
-        while l < r:
-            area = (r-l) * (min(heights[l], heights[r]))
+        left, right = 0, len(heights)-1
+        while left < right:
+            area = (right-left) * (min(heights[left], heights[right]))
             max_area = max(area, max_area)
-            if heights[l] < heights[r]:
-                l += 1
-            elif heights[l] == heights[r]:
-                l += 1
-                r -= 1
+            if heights[left] < heights[right]:
+                left += 1
+            elif heights[left] == heights[right]:
+                left += 1
+                right -= 1
             else:
-                r -= 1
+                right -= 1
         return max_area
 
 
