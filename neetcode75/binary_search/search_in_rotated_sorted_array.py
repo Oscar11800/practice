@@ -44,11 +44,7 @@ class Solution:
             mid = (right + left) // 2
             if nums[mid] == target:
                 return mid
-            if nums[left] == target:
-                return left
-            if nums[right] == target:
-                return right
-            if nums[left] < nums[mid]:
+            if nums[left] <= nums[mid]:
                 if nums[left] < target < nums[mid]:
                     right = mid - 1
                 else:
