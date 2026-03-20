@@ -53,13 +53,20 @@ class Solution:
         rtn = []
         i = 1
         while i < len(s):
-            s_len = int(s[i])
-            i+= 2
+            s_len = ""
+            while s[i] != ']':
+                s_len += s[i]
+                i += 1
+            s_len = int(s_len)
+            i+= 1
             new_s = ""
             for i in range(i, i + s_len):
                 new_s += s[i]
             rtn.append(new_s)
-            i+= 2
+            if s_len > 0:
+                i+= 2
+            else:
+                i += 1
         return rtn
 
 
@@ -68,7 +75,7 @@ class Solution:
 def test_example1():
     """Roundtrip with normal words."""
     codec = Solution()
-    inp = ["Hello", "World"]
+    inp = ["",""]
     encoded = codec.encode(inp)
     decoded = codec.decode(encoded)
     assert_equal(decoded, inp)
