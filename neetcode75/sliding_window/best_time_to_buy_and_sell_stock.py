@@ -3,7 +3,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Best Time to Buy and Sell Stock
-Easy
 
 You are given an integer array prices where prices[i] is the price of NeetCoin
 on the ith day.
@@ -32,7 +31,16 @@ Constraints:
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        raise NotImplementedError
+        max_profit = 0
+        n = len(prices)
+        left, right = 0, 1
+        while right < n:
+            if prices[right] < prices[left]:
+                left = right
+            else:
+                max_profit = max(prices[right] - prices[left], max_profit)
+            right += 1
+        return max_profit
 
 
 def test_example1():
