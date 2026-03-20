@@ -44,7 +44,28 @@ Constraints:
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        raise NotImplementedError
+        '''
+        Current solution loops through nested to get the sum between every element to generate negative targets
+        we store the indices of the nums that created these targets. Then we loop through the nums again to
+        check if they are a target that are not from the original nums, and if they are, they we append all 3 nums.
+        Finally we sort the values of each of these in the list of lists and convert them to tuple so we can
+        convert it to set to remove dupes, finally return the list version
+        '''
+        rtn = []
+        targetmap = {}
+        n = len(nums)
+        for i in range(n):
+            for j in range(i+1, n):
+                target = -(nums[i] + nums[j])
+                targetmap.setdefault(target, []).append((i, j))
+        for idx, num in enumerate(nums):
+            if num not in targetmap:
+                continue
+            for (i, j) in targetmap[num]:
+                if idx != i and idx != j:
+                    rtn.append([nums[i], nums[j], nums[idx]])
+        return [list(t) for t in {tuple(sorted(x)) for x in rtn}]
+        
 
 
 def normalize_triplets(triplets: List[List[int]]) -> List[List[int]]:
