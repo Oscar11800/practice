@@ -5,7 +5,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Remove Node From End of Linked List
-Medium
 
 You are given the beginning of a linked list head, and an integer n.
 
@@ -40,7 +39,28 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        raise NotImplementedError
+        if head is None:
+            return None
+        length = 0
+        end = head
+        while end is not None:
+            length += 1
+            end = end.next
+        
+        dummy = ListNode(0, head)
+        prev = dummy
+        curr = head
+        count = 0
+
+        while count < (length - n):
+            prev = curr
+            curr = curr.next
+            count += 1
+            
+        prev.next = curr.next
+        curr.next = None
+        return dummy.next
+        
 
 
 def build_linked_list(values: list[int]) -> Optional[ListNode]:
