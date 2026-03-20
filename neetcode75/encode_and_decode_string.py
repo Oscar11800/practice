@@ -36,11 +36,8 @@ class Solution:
         :return: Encoded string.
         """
         encoded = ""
-        if len(strs) == 0:
-            return encoded
         for s in strs:
-            s_str = "[" + str(len(s)) + "]" + s
-            encoded += s_str
+            encoded += "[" + str(len(s)) + "]" + s
         return encoded
 
     def decode(self, s: str) -> List[str]:
@@ -51,22 +48,17 @@ class Solution:
         :return: Original list of strings.
         """
         rtn = []
-        i = 1
-        while i < len(s):
-            s_len = ""
-            while s[i] != ']':
-                s_len += s[i]
-                i += 1
-            s_len = int(s_len)
-            i+= 1
-            new_s = ""
-            for i in range(i, i + s_len):
-                new_s += s[i]
-            rtn.append(new_s)
-            if s_len > 0:
-                i+= 2
-            else:
-                i += 1
+        i = 0
+        n = len(s)
+        while i < n:
+            j = i + 1
+            while j < n and s[j] != "]":
+                j += 1
+            length = int(s[i+1:j])
+            start = j + 1
+            end = start + length
+            rtn.append(s[start:end])
+            i = end
         return rtn
 
 
