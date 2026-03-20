@@ -1,7 +1,7 @@
 from collections import defaultdict
 import heapq
 from typing import List
-from test_runner import assert_equal, run_tests
+from neetcode75.test_runner import assert_equal, run_tests
 
 '''
 347. Top K Frequent Elements

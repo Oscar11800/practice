@@ -1,6 +1,5 @@
 from typing import List
-from test_runner import assert_equal, run_tests
-
+from neetcode75.test_runner import assert_equal, run_tests
 """
 128. Longest Consecutive Sequence
 
@@ -34,6 +33,26 @@ class Solution:
         Return the length of the longest consecutive sequence in O(n) time.
         - Duplicates should not break sequence counting.
         """
+        uniques = set(nums)
+        largest = 0
+
+        while len(uniques) > 0:
+            seq = 1
+            og_curr = uniques.pop()
+            curr = og_curr
+            while curr - 1 in uniques:
+                uniques.remove(curr-1)
+                seq += 1
+                curr -= 1
+            curr = og_curr
+            while curr + 1 in uniques:
+                uniques.remove(curr+1)
+                seq += 1
+                curr += 1
+            largest = max(largest, seq)
+        return largest
+
+            
         
 
 

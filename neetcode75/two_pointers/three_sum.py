@@ -1,5 +1,5 @@
 from typing import List
-from test_runner import assert_equal, run_tests
+from neetcode75.test_runner import assert_equal, run_tests
 
 """
 3Sum
