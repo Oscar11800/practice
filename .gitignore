@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 Anthem
 Fencing
+.DS_Store
