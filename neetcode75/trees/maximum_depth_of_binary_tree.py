@@ -1,5 +1,6 @@
 from neetcode75.test_runner import assert_equal, run_tests
 from typing import Optional
+from collections import deque
 
 """
 Maximum Depth of Binary Tree
@@ -33,7 +34,23 @@ class TreeNode:
 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        raise NotImplementedError
+        if not root:
+            return 0
+        queue = deque()
+        queue.append(root)
+        max_depth = 0
+
+        while queue:
+            max_depth += 1
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return max_depth
+
+
 
 
 def build_tree(vals):
