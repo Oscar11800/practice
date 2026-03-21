@@ -2,7 +2,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Longest Substring Without Repeating Characters
-Medium
 
 Given a string s, find the length of the longest substring without duplicate
 characters.
@@ -26,7 +25,24 @@ s may consist of printable ASCII characters.
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        raise NotImplementedError
+        if s == "":
+            return 0
+        n = len(s)
+        max_count = 1
+        count = 1
+        seen = set()
+        left, right = 0, 1
+        seen.add(s[left])
+        while right < n:
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
+                count -= 1
+            seen.add(s[right])
+            right += 1
+            count += 1
+            max_count = max(count, max_count)
+        return max_count 
 
 
 def test_example1():
