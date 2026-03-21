@@ -1,6 +1,6 @@
 from neetcode75.test_runner import assert_equal, run_tests
 from typing import Optional
-
+from collections import deque
 """
 Invert Binary Tree
 Easy
@@ -34,7 +34,21 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        raise NotImplementedError
+       if not root:
+           return root
+       q = deque()
+       q.append(root)
+
+       while q:
+           node = q.popleft()
+           temp = node.left
+           node.left = node.right
+           node.right = temp
+           if node.right:
+               q.append(node.right)
+           if node.left:
+               q.append(node.left)
+       return root
 
 
 def build_tree(vals):
