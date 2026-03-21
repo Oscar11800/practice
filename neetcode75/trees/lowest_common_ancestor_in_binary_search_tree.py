@@ -39,7 +39,15 @@ class TreeNode:
 
 class Solution:
     def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-        raise NotImplementedError
+        while root:
+            if (p.val < root.val and q.val > root.val) or (q.val < root.val and p.val > root.val) or p.val == root.val or q.val == root.val:
+                return root
+            elif p.val < root.val and q.val < root.val:
+                root = root.left
+            else:
+                root = root.right
+        return None
+
 
 
 def build_tree(vals):
