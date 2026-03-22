@@ -39,11 +39,30 @@ class TreeNode:
 
 class Codec:
     def serialize(self, root: Optional[TreeNode]) -> str:
-        raise NotImplementedError
+        rtn = []
+        def dfs(node):
+            if not node:
+                rtn.append("#,")
+                return
+            rtn.append(f"{node.val},")
+            dfs(node.left)
+            dfs(node.right)
+        dfs(root)
+        return ''.join(rtn)
 
     def deserialize(self, data: str) -> Optional[TreeNode]:
-        raise NotImplementedError
-
+        self.counter = 0
+        vals = data.split(",")[:-1]
+        def dfs():
+            if vals[self.counter] == '#':
+                self.counter += 1
+                return None
+            node = TreeNode(int((vals[self.counter])))
+            self.counter += 1
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        return dfs()
 
 def build_tree(vals):
     if not vals:
