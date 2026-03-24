@@ -73,7 +73,7 @@ def build_tree(vals):
             left_i, right_i = 2 * i + 1, 2 * i + 2
             if left_i < len(nodes):
                 node.left = nodes[left_i]
-            if right_i < len(nodes):
+            if right_ < len(nodes):
                 node.right = nodes[right_i]
     return nodes[0]
 
