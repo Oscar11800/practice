@@ -56,9 +56,6 @@ class Solution:
                 righteven += 1
         return rtn
 
-
-
-
 def test_example1():
     sol = Solution()
     result = sol.longestPalindrome("ababd")
