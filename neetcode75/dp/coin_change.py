@@ -3,7 +3,6 @@ from typing import List
 
 """
 Coin Change
-Medium
 
 You are given an integer array coins representing coins of different
 denominations and an integer amount representing a target amount of money.
@@ -37,7 +36,22 @@ Constraints:
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        raise NotImplementedError
+        dp = [-1] * (amount + 1)
+        dp[0] = 0
+
+        for i in range(1, amount + 1):
+            minimum = float('inf')
+            for coin in coins:
+                if (i - coin >= 0 and
+                    dp[i - coin] != -1 and
+                    (dp[i-coin] + 1) < minimum): 
+                    minimum = dp[i - coin] + 1
+            if minimum == float('inf'):
+                dp[i] = -1
+            else: 
+                dp[i] = minimum
+        return dp[amount]
+
 
 
 def test_example1():
