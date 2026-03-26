@@ -1,8 +1,7 @@
-from neetcode75.test_runner import assert_equal, run_tests
+from test_runner import assert_equal, run_tests
 
 """
 Maximum Value of Expression
-Medium
 
 Given a non-empty string puzzle consisting of single digits and operators (+, -), return the maximum value that can be evaluated from the puzzle.
 

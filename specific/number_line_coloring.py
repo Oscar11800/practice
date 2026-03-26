@@ -1,4 +1,4 @@
-from neetcode75.test_runner import assert_equal, run_tests
+from test_runner import assert_equal, run_tests
 
 """
 Number Line Coloring
