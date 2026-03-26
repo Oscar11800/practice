@@ -3,7 +3,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Jump Game
-Medium
 
 You are given an integer array nums where each element nums[i] indicates your maximum jump length at that position.
 
@@ -26,8 +25,14 @@ Constraints:
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        raise NotImplementedError
-
+        max_reach = 0
+        for i in range(len(nums)):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + nums[i])
+            if max_reach >= len(nums) - 1:
+                return True
+        return True
 
 def test_example1():
     sol = Solution()
