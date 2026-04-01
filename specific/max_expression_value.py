@@ -3,7 +3,8 @@ from test_runner import assert_equal, run_tests
 """
 Maximum Value of Expression
 
-Given a non-empty string puzzle consisting of single digits and operators (+, -), return the maximum value that can be evaluated from the puzzle.
+Given a non-empty string puzzle consisting of single digits and operators (+, -),
+return the maximum value that can be evaluated from the puzzle.
 
 Valid expression rules:
 - Starts from a number
@@ -23,7 +24,27 @@ Output: 6
 
 
 def solution(puzzle):
-    raise NotImplementedError
+    curr = int(puzzle[0])
+    max_val = curr
+    
+    i = 1
+    while i < len(puzzle):
+        op = puzzle[i]
+        i += 1
+        num = int(puzzle[i])
+        i += 1
+        
+        if op == '+':
+            curr = curr + num
+        else:
+            curr = curr - num
+        
+        max_val = max(max_val, curr)
+        
+        if curr < 0:
+            curr = 0
+    
+    return max_val        
 
 
 def test_example1():

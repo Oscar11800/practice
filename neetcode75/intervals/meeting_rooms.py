@@ -5,7 +5,9 @@ from neetcode75.test_runner import assert_equal, run_tests
 Meeting Rooms
 Easy
 
-Given an array of meeting time interval objects consisting of start and end times [[start_1,end_1],[start_2,end_2],...] (start_i < end_i), determine if a person could add all meetings to their schedule without any conflicts.
+Given an array of meeting time interval objects consisting of start and end times
+[[start_1,end_1],[start_2,end_2],...] (start_i < end_i), 
+determine if a person could add all meetings to their schedule without any conflicts.
 
 Note: (0,8),(8,10) is not considered a conflict at 8
 
@@ -31,7 +33,18 @@ class Interval:
 
 class Solution:
     def canAttendMeetings(self, intervals: List[Interval]) -> bool:
-        raise NotImplementedError
+        start_times = [start_time for start_time, end_time in intervals]
+        end_times = [end_time for start_time, endtime in intervals]
+        i = j = 0
+
+    def quicksort(arr):
+        if len(arr) <= 1:
+            return arr
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        return quicksort(left) + middle + quicksort(right)
 
 
 def test_example1():

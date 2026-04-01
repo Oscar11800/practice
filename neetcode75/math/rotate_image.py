@@ -3,7 +3,6 @@ from neetcode75.test_runner import assert_equal, run_tests
 
 """
 Rotate Image
-Medium
 
 Given a square n x n matrix of integers matrix, rotate it by 90 degrees clockwise.
 
@@ -26,7 +25,15 @@ n == matrix.length == matrix[i].length
 
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
-        raise NotImplementedError
+        n = len(matrix)
+        for i in len(n):
+            for _ in range(4):
+                top 
+
+                             
+
+                              
+
 
 
 def test_example1():
